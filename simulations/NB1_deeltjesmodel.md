@@ -439,7 +439,56 @@ def init():
 def update(frame):
     particle.update_position()
     dot.set_data([particle.r[0]], [particle.r[1]])
+### YOUR CODE HERE ###
+    if particle.r[0]>=10:
+        particle.r[0]=-10
+    elif particle.r[0]<=-10:
+        particle.r[0]=10
+    return dot,      
+
+# Create animation
+ani = FuncAnimation(fig, update, frames=range(200), init_func=init, blit=True, interval=50)
+
+# For Jupyter notebook:
+from IPython.display import HTML
+HTML(ani.to_jshtml())
+
+```
+
+```python
+# Simulation parameters
+dt = 0.1         # time step
+num_steps = 500  # number of time steps
+particle = ParticleClass(m=1.0, v=[5.0, 0], r=[0.0, 0.0],R=1.0)  
+
+# Create the figure and axis
+fig, ax = plt.subplots()
+ax.set_xlim(-10, 10)
+ax.set_ylim(-10, 10)
+ax.set_aspect('equal')
+ax.set_title("Particle Animation")
+ax.set_xlabel("x")
+ax.set_ylabel("y")
+
+# Create the particle as a red dot
+dot, = ax.plot([], [], 'ro', markersize=10)
+
+# Initialization function for animation
+def init():
+    dot.set_data([], [])
     return dot,
+
+# Update function for each frame
+# harde wanden
+def update(frame):
+    particle.update_position()
+    dot.set_data([particle.r[0]], [particle.r[1]])
+### YOUR CODE HERE ###
+    if particle.r[0]>=10:
+        particle.v[0]=-particle.v[0]
+    elif particle.r[0]<=-10:
+        particle.v[0]=-particle.v[0]
+    return dot, 
 
 # Create animation
 ani = FuncAnimation(fig, update, frames=range(200), init_func=init, blit=True, interval=50)
@@ -465,8 +514,10 @@ def update(frame):
     particle.update_position()
     dot.set_data([particle.r[0]], [particle.r[1]])
 ### YOUR CODE HERE ###
-    if particle.r[0]==10:
+    if particle.r[0]>=10:
         particle.r[0]=-10
+    elif particle.r[0]<=-10:
+        particle.r[0]=10
     return dot,         
 ```
 
@@ -483,6 +534,10 @@ def update(frame):
     particle.update_position()
     dot.set_data([particle.r[0]], [particle.r[1]])
 ### YOUR CODE HERE ###
+    if particle.r[0]>=10:
+        particle.v[0]=-particle.v[0]
+    elif particle.r[0]<=-10:
+        particle.v[0]=-particle.v[0]
     return dot,
 ```
 
@@ -498,7 +553,7 @@ dt = 0.1         # time step
 num_steps = 500  # number of time steps
 
 ### YOUR CODE HERE ###
-
+particle = ParticleClass(m=1.0, v=[5.0, 3.0], r=[0.0, 0.0],R=1.0)  
 # Create the figure and axis
 fig, ax = plt.subplots()
 ax.set_xlim(-10, 10)
@@ -521,6 +576,14 @@ def update(frame):
     particle.update_position()
     dot.set_data([particle.r[0]], [particle.r[1]])
     ### YOUR CODE HERE ###
+    if particle.r[0]>=10:
+        particle.v[0]=-particle.v[0]
+    elif particle.r[0]<=-10:
+        particle.v[0]=-particle.v[0]
+    if particle.r[1]>=10:
+        particle.v[1]=-particle.v[1]
+    elif particle.r[1]<=-10:
+        particle.v[1]=-particle.v[1]
     return dot,
 
 # Create animation
