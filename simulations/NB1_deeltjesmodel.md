@@ -230,6 +230,25 @@ En als je wilt gaan voor een uitdaging:
 
 ```python
 ### YOUR CODE HERE ###
+N=10
+i=0
+part_array= []
+
+while i < N:
+    part_array.append(ParticleClass(m=1.0, v=[np.random.randint(-5,5,1)[0],0],r=[i,0],R=1.0))
+    i+=1
+
+c=0
+while c<len(part_array):
+    part_array[c].update_position(5.0)
+    c+=1
+
+
+
+plt.figure()
+for particle in part_array:
+    plt.plot(particle.r[0],particle.r[1],'k.')
+plt.show()
 ```
 
 Onze simulaties worden snel “zwaar”. Er moeten veel berekeningen gedaan worden en dat kost nu eenmaal tijd. Nu is het wel zo dat sommige berekeningen meer tijd kosten dan anderen. Om te kijken of een stukje code geoptimaliseerd kan worden, moeten we een timer maken. Dat kan met onderstaande code:
@@ -248,8 +267,21 @@ for i in range(N):
 
 eind = time.time()
 lengte = eind - start
-
+d=lengte
 print("Dit kostte ", lengte, "seconde!")
+
+start = time.time()
+
+array = np.array([])
+N = int(1e5)
+
+array = np.append(array,np.random.rand(N))
+
+eind = time.time()
+lengte = eind - start
+c=lengte
+print("Dit kostte ", lengte, "seconde!")
+print(d/c)
 ```
 
 Idealiter draaien we de bovenstaande code een aantal keer zodat we een goede schatting hebben van de rekentijd.
@@ -433,6 +465,8 @@ def update(frame):
     particle.update_position()
     dot.set_data([particle.r[0]], [particle.r[1]])
 ### YOUR CODE HERE ###
+    if particle.r[0]==10:
+        particle.r[0]=-10
     return dot,         
 ```
 
