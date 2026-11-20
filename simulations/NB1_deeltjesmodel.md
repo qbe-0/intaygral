@@ -1023,7 +1023,7 @@ Wat is de beperkende factor in ons script om het aantal botsingen als functie va
 ```
 
 ```{solution} ex-deeltjes-12
-Jouw antwoord
+Doordat onze dt te klein is vinden te veel botsingen in een te korte tijd plaats waardoor de alle botsingen niet meer geregistreerd worden.
 ```
 
 
@@ -1046,13 +1046,13 @@ class ParticleClass:
         return np.linalg.norm(self.r - other.r) <= (self.R + other.R)
 
 # Simulation parameters
-dt = 0.005        # time step
-num_steps = 2060  # number of time steps
+dt = 0.1        # time step
+num_steps = 200  # number of time steps
 m1 = 1.0
-m2 = 10000.0
+m2 = 50.0
 
 particleA = ParticleClass(m=m1, v=[0, 0], r=[-4.0, 0.0],R=0.45)  
-particleB = ParticleClass(m=m2, v=[-1.5, 0], r=[-2.0, 0.0],R=0.45)  
+particleB = ParticleClass(m=m2, v=[-1.0, 0], r=[-2.0, 0.0],R=0.45)  
 
 
 # Create the figure and axis
@@ -1122,7 +1122,7 @@ def update(frame):
     return dot, counter_text
 
 # Create animation
-ani = FuncAnimation(fig, update, frames=range(2060), init_func=init, blit=True, interval=50)
+ani = FuncAnimation(fig, update, frames=range(200), init_func=init, blit=True, interval=50)
 
 # For Jupyter notebook:
 from IPython.display import HTML
@@ -1137,6 +1137,7 @@ Pas de bovenstaande code aan zodat $m_1 = 1$ en $m_2 = 50$. Run de code en geef 
 ```python tags=["NB1_eindantwoord"]
 #num_botsingen = ...
 ### YOUR CODE HERE ###
+print(counter)
 ```
 
 ```{exercise}
